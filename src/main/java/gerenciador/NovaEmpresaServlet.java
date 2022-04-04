@@ -3,6 +3,7 @@ package gerenciador;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,36 +23,14 @@ public class NovaEmpresaServlet extends HttpServlet {
 
 		Banco banco = new Banco();
 		String nomeEmpresa = request.getParameter("nomeEmpresa");
+		Empresa empresa = new Empresa(banco.getEmpresas().size() + 1, nomeEmpresa);
 
-		banco.adiciona(new Empresa(banco.getEmpresas().size() + 1, nomeEmpresa));
+		banco.adiciona(empresa);
 
-		PrintWriter out = response.getWriter();
+		RequestDispatcher rd = request.getRequestDispatcher("/nova-empresa-cadastrada.jsp");
+		request.setAttribute("nomeEmpresa", empresa.getNome());
+		rd.forward(request, response);
 
-		out.println("<HTML>");
-		out.println("<HEAD>");
-		out.println("<TITLE>Cadastrar nova empresa</TITLE>");
-		out.println("</HEAD>");
-		out.println("<BODY>");
-		out.println("<P>Cadastro da empresa " + nomeEmpresa + " efetuado com sucesso</P>");
-
-		out.println("<H3>Empresas Cadastradas</H3>");
-		out.println("<TABLE>");
-
-		out.println("<TR>");
-		out.println("<TH>ID</TH>");
-		out.println("<TH>Nome da Empresa</TH>");
-		out.println("</TR>");
-
-		if (banco.getEmpresas().size() > 0) {
-
-			banco.getEmpresas().forEach(empresa -> out
-					.println("<TR><TD>" + empresa.getId() + " </TD><TD> " + empresa.getNome() + " </TD></TR>"));
-
-		}
-
-		out.println("</TABLE>");
-		out.println("</BODY>");
-		out.println("</HTML>");
 	}
 
 }
