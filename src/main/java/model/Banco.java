@@ -1,6 +1,8 @@
 package model;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class Banco {
@@ -8,8 +10,8 @@ public class Banco {
 	private static List<Empresa> empresas = new ArrayList<>();
 
 	static {
-		Banco.empresas.add(new Empresa(1, "Google"));
-		Banco.empresas.add(new Empresa(2, "Microsoft"));
+		Banco.empresas.add(new Empresa(1, "Google", new Date()));
+		Banco.empresas.add(new Empresa(2, "Microsoft", new Date()));
 	}
 
 	public void adiciona(Empresa empresa) {

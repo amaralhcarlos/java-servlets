@@ -2,6 +2,11 @@ package gerenciador;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -25,8 +30,21 @@ public class NovaEmpresaServlet extends HttpServlet {
 		System.out.println("Cadastrando nova empresa");
 
 		Banco banco = new Banco();
+
 		String nomeEmpresa = request.getParameter("nomeEmpresa");
-		Empresa empresa = new Empresa(banco.getEmpresas().size() + 1, nomeEmpresa);
+
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+		Date dataAberturaEmpresa = null;
+		
+		try {
+			dataAberturaEmpresa = sdf.parse(request.getParameter("dataAberturaEmpresa"));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			throw new ServletException("Data Inválida!");
+		}
+
+		Empresa empresa = new Empresa(banco.getEmpresas().size() + 1, nomeEmpresa, dataAberturaEmpresa);
 
 		banco.adiciona(empresa);
 
