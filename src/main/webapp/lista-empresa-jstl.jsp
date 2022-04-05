@@ -1,4 +1,4 @@
-<%@ page import="java.util.List, gerenciador.Banco, gerenciador.Empresa"%>
+<%@ page import="java.util.List,model.Banco,model.Empresa"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>

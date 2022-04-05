@@ -11,11 +11,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.Banco;
+import model.Empresa;
+
 /**
  * Servlet implementation class ListaEmpresas
  */
-@WebServlet("/listaEmpresas")
-public class ListaEmpresas extends HttpServlet {
+@WebServlet("/listaEmpresasJSTL")
+public class ListaEmpresasJSTLServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -24,7 +27,7 @@ public class ListaEmpresas extends HttpServlet {
 		Banco banco = new Banco();
 		List<Empresa> empresas = banco.getEmpresas();
 
-		RequestDispatcher rd = request.getRequestDispatcher("/lista-empresa.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/lista-empresa-jstl.jsp");
 		request.setAttribute("empresas", empresas);
 		rd.forward(request, response);
 

@@ -1,12 +1,13 @@
+<%@ page import="java.util.List,model.Banco,model.Empresa"%>
+<%
+List<Empresa> empresas = (List<Empresa>) request.getAttribute("empresas");
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
 <title>Lista empresas</title>
-<%@ page import="java.util.List, gerenciador.Banco, gerenciador.Empresa"%>
-<%
-List<Empresa> empresas = (List<Empresa>) request.getAttribute("empresas");
-%>
 </head>
 <body>
 

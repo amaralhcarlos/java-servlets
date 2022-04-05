@@ -1,4 +1,4 @@
-package gerenciador;
+package model;
 
 public class Empresa {
 
