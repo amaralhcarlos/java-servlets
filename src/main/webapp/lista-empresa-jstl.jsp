@@ -12,6 +12,10 @@
 </head>
 <body>
 
+	<c:if test="${not empty nomeEmpresa }">
+		<P>Cadastro da empresa ${nomeEmpresa} efetuado com sucesso!</P>
+	</c:if>
+
 	<H3>Empresas Cadastradas</H3>
 
 	<c:if test="${totalEmpresas > 0}">

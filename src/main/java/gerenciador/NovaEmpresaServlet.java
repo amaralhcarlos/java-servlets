@@ -48,9 +48,7 @@ public class NovaEmpresaServlet extends HttpServlet {
 
 		banco.adiciona(empresa);
 
-		RequestDispatcher rd = request.getRequestDispatcher("/nova-empresa-cadastrada.jsp");
-		request.setAttribute("nomeEmpresa", empresa.getNome());
-		rd.forward(request, response);
+		response.sendRedirect("listaEmpresasJSTL");
 
 	}
 
