@@ -5,7 +5,8 @@
 
 
 <body>
-<p>Curso de Servlets - Alura</p>
+	<h1>Bem-vindo</h1>
+	<p>Curso de Servlets - Alura</p>
 </body>
 
 
