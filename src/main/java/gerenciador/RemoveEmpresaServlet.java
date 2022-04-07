@@ -29,17 +29,7 @@ public class RemoveEmpresaServlet extends HttpServlet {
 			throw new ServletException("Identificador não é válido");
 		}
 
-		Empresa empresa = banco.getEmpresas().stream().filter(e -> idEmpresa.equals(e.getId())).findAny().orElse(null);
-
-		if (empresa == null) {
-
-			throw new ServletException("Nenhuma empresa com o id " + idEmpresa + " foi localizada.");
-
-		}
-
-		System.out.println(empresa);
-
-		banco.getEmpresas().remove(empresa);
+		banco.removeEmpresa(idEmpresa);
 
 		response.sendRedirect("listaEmpresasJSTL");
 

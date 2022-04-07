@@ -10,6 +10,7 @@ import java.util.List;
 public class Banco {
 
 	private static List<Empresa> empresas = new ArrayList<>();
+	private static Integer chave = 1;
 
 	static {
 
@@ -22,17 +23,30 @@ public class Banco {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		Empresa empresa1 = new Empresa("Google", date);
+		empresa1.setId(chave++);
+		
+		Empresa empresa2 = new Empresa("Microsoft", new Date());
+		empresa2.setId(chave++);
 
-		Banco.empresas.add(new Empresa(1, "Google", date));
-		Banco.empresas.add(new Empresa(2, "Microsoft", new Date()));
+		Banco.empresas.add(empresa1);
+		Banco.empresas.add(empresa2);
 	}
 
-	public void adiciona(Empresa empresa) {
+	public void adicionaEmpresa(Empresa empresa) {
 
+		empresa.setId(chave++);
+		
 		Banco.empresas.add(empresa);
 
-		System.out.println("Empresa " + empresa.getNome() + " foi incluída.");
+	}
+	
+	public void removeEmpresa(Integer id) {
 
+		Empresa empresa = empresas.stream().filter(e -> id.equals(e.getId())).findAny().orElse(null);
+		
+		empresas.remove(empresa);
 	}
 
 	public List<Empresa> getEmpresas() {

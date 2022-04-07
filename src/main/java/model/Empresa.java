@@ -8,10 +8,9 @@ public class Empresa {
 	private String nome;
 	private Date dataAbertura;
 
-	public Empresa(Integer id, String nomeEmpresa, Date dataAberturaEmpresa) {
+	public Empresa(String nomeEmpresa, Date dataAberturaEmpresa) {
 
 		super();
-		this.id = id;
 		this.nome = nomeEmpresa;
 		this.dataAbertura = dataAberturaEmpresa;
 	}
@@ -36,11 +35,13 @@ public class Empresa {
 		this.dataAbertura = dataAberturaEmpresa;
 	}
 
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
 	@Override
 	public String toString() {
 		return "Empresa [id=" + id + ", nome=" + nome + ", dataAbertura=" + dataAbertura + "]";
 	}
-	
-	
 
 }

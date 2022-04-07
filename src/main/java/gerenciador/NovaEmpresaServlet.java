@@ -44,9 +44,9 @@ public class NovaEmpresaServlet extends HttpServlet {
 			throw new ServletException("Data Inválida!");
 		}
 
-		Empresa empresa = new Empresa(banco.getEmpresas().size() + 1, nomeEmpresa, dataAberturaEmpresa);
+		Empresa empresa = new Empresa(nomeEmpresa, dataAberturaEmpresa);
 
-		banco.adiciona(empresa);
+		banco.adicionaEmpresa(empresa);
 
 		response.sendRedirect("listaEmpresasJSTL");
 
