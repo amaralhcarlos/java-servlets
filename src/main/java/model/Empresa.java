@@ -28,4 +28,19 @@ public class Empresa {
 		return dataAbertura;
 	}
 
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public void setDataAbertura(Date dataAberturaEmpresa) {
+		this.dataAbertura = dataAberturaEmpresa;
+	}
+
+	@Override
+	public String toString() {
+		return "Empresa [id=" + id + ", nome=" + nome + ", dataAbertura=" + dataAbertura + "]";
+	}
+	
+	
+
 }
