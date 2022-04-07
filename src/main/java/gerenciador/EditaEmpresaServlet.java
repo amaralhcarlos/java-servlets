@@ -33,8 +33,8 @@ public class EditaEmpresaServlet extends HttpServlet {
 			throw new ServletException("Identificador não é válido");
 		}
 
-		Empresa empresa = banco.getEmpresas().stream().filter(e -> idEmpresa.equals(e.getId())).findAny().orElse(null);
-
+		Empresa empresa = banco.buscaEmpresa(idEmpresa);
+		
 		if (empresa == null) {
 
 			throw new ServletException("Nenhuma empresa com o id " + idEmpresa + " foi localizada.");
