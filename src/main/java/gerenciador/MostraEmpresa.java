@@ -20,7 +20,7 @@ import model.Empresa;
 public class MostraEmpresa extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	protected void service(HttpServletRequest request, HttpServletResponse response)
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
@@ -34,7 +34,7 @@ public class MostraEmpresa extends HttpServlet {
 			throw new ServletException("Identificador não é válido");
 		}
 
-		Empresa empresa = empresas.stream().filter(e -> idEmpresa.equals(e.getId())).findAny().orElse(null);
+		Empresa empresa = banco.buscaEmpresa(idEmpresa);
 
 		if (empresa == null) {
 			throw new ServletException("Não foi encontrada nenhuma empresa com esse identificador.");

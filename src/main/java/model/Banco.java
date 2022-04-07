@@ -23,10 +23,10 @@ public class Banco {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		Empresa empresa1 = new Empresa("Google", date);
 		empresa1.setId(chave++);
-		
+
 		Empresa empresa2 = new Empresa("Microsoft", new Date());
 		empresa2.setId(chave++);
 
@@ -37,16 +37,19 @@ public class Banco {
 	public void adicionaEmpresa(Empresa empresa) {
 
 		empresa.setId(chave++);
-		
+
 		Banco.empresas.add(empresa);
 
 	}
-	
+
 	public void removeEmpresa(Integer id) {
 
-		Empresa empresa = empresas.stream().filter(e -> id.equals(e.getId())).findAny().orElse(null);
-		
+		Empresa empresa = buscaEmpresa(id);
 		empresas.remove(empresa);
+	}
+
+	public Empresa buscaEmpresa(Integer id) {
+		return empresas.stream().filter(e -> id.equals(e.getId())).findAny().orElse(null);
 	}
 
 	public List<Empresa> getEmpresas() {
