@@ -1,4 +1,4 @@
-package gerenciador;
+package controller;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -6,35 +6,27 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.Banco;
 import model.Empresa;
 
-/**
- * Servlet implementation class EditaEmpresa
- */
-@WebServlet("/editaEmpresa")
-public class EditaEmpresaServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+public class EditaEmpresa {
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	public void executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		Banco banco = new Banco();
 		Integer idEmpresa;
 
 		try {
-			idEmpresa = new Integer(request.getParameter("id"));
+			idEmpresa = Integer.parseInt(request.getParameter("id"));
 		} catch (NumberFormatException e) {
 			throw new ServletException("Identificador não é válido");
 		}
 
 		Empresa empresa = banco.buscaEmpresa(idEmpresa);
-		
+
 		if (empresa == null) {
 
 			throw new ServletException("Nenhuma empresa com o id " + idEmpresa + " foi localizada.");
@@ -54,7 +46,8 @@ public class EditaEmpresaServlet extends HttpServlet {
 		empresa.setNome(request.getParameter("nomeEmpresa"));
 		empresa.setDataAbertura(dataAberturaEmpresa);
 
-		response.sendRedirect("listaEmpresasJSTL");
+		response.sendRedirect("listaEmpresas");
 
 	}
+
 }
