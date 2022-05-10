@@ -13,7 +13,9 @@ import model.Banco;
 import model.Empresa;
 
 public class NovaEmpresa {
-	public void executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	public String executa(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		System.out.println("Cadastrando nova empresa");
 
 		Banco banco = new Banco();
@@ -35,6 +37,7 @@ public class NovaEmpresa {
 
 		banco.adicionaEmpresa(empresa);
 
-		response.sendRedirect("listaEmpresas");
+		return "redirect:listaEmpresas";
 	}
+
 }

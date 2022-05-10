@@ -1,6 +1,8 @@
 package servlet;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,30 +24,44 @@ public class UnicaEntradaServlet extends HttpServlet {
 
 		String url = request.getRequestURI();
 
+		String redirecionamento = null;
 
 		if (url.equals("/gerenciador/listaEmpresas")) {
 			ListaEmpresa acao = new ListaEmpresa();
-			acao.executa(request, response);
+			redirecionamento = acao.executa(request, response);
 		}
 
 		else if (url.equals("/gerenciador/removeEmpresa")) {
 			RemoveEmpresa acao = new RemoveEmpresa();
-			acao.executa(request, response);
+			redirecionamento = acao.executa(request, response);
 		}
 
 		else if (url.equals("/gerenciador/mostraEmpresa")) {
 			MostraEmpresa acao = new MostraEmpresa();
-			acao.executa(request, response);
+			redirecionamento = acao.executa(request, response);
 		}
 
 		else if (url.equals("/gerenciador/novaEmpresa")) {
 			NovaEmpresa acao = new NovaEmpresa();
-			acao.executa(request, response);
+			redirecionamento = acao.executa(request, response);
 		}
 
 		else if (url.equals("/gerenciador/editaEmpresa")) {
 			EditaEmpresa acao = new EditaEmpresa();
-			acao.executa(request, response);
+			redirecionamento = acao.executa(request, response);
+		}
+
+		String[] tipoEEndereco = redirecionamento.split(":");
+
+		if (tipoEEndereco[0].equals("forward")) {
+
+			RequestDispatcher rd = request.getRequestDispatcher(tipoEEndereco[1]);
+			rd.forward(request, response);
+
+		} else {
+
+			response.sendRedirect(tipoEEndereco[1]);
+
 		}
 	}
 

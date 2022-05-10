@@ -13,10 +13,11 @@ import model.Empresa;
 
 public class MostraEmpresa {
 
-	public void executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	public String executa(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		System.out.println("mostrar empresa " + request.getParameter("id"));
-		
+
 		Banco banco = new Banco();
 		Integer idEmpresa;
 		try {
@@ -31,9 +32,9 @@ public class MostraEmpresa {
 			throw new ServletException("Não foi encontrada nenhuma empresa com esse identificador.");
 		}
 
-		RequestDispatcher rd = request.getRequestDispatcher("/mostra-empresa.jsp");
 		request.setAttribute("empresa", empresa);
-		rd.forward(request, response);
+
+		return "forward:/mostra-empresa.jsp";
 
 	}
 

@@ -14,7 +14,8 @@ import model.Empresa;
 
 public class EditaEmpresa {
 
-	public void executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public String executa(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
 		Banco banco = new Banco();
 		Integer idEmpresa;
@@ -46,7 +47,7 @@ public class EditaEmpresa {
 		empresa.setNome(request.getParameter("nomeEmpresa"));
 		empresa.setDataAbertura(dataAberturaEmpresa);
 
-		response.sendRedirect("listaEmpresas");
+		return "redirect:listaEmpresas";
 
 	}
 

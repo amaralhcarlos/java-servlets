@@ -13,14 +13,14 @@ import model.Empresa;
 
 public class ListaEmpresa {
 
-	public void executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public String executa(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
 		Banco banco = new Banco();
 		List<Empresa> empresas = banco.getEmpresas();
-
-		RequestDispatcher rd = request.getRequestDispatcher("/lista-empresa.jsp");
 		request.setAttribute("empresas", empresas);
-		rd.forward(request, response);
+		
+		return "forward:/lista-empresa.jsp";
 
 	}
 

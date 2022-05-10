@@ -10,7 +10,7 @@ import model.Banco;
 
 public class RemoveEmpresa {
 
-	public void executa(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+	public String executa(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
 
 		System.out.println("remover empresa " + request.getParameter("id"));
@@ -26,8 +26,8 @@ public class RemoveEmpresa {
 		}
 
 		banco.removeEmpresa(idEmpresa);
-
-		response.sendRedirect("listaEmpresas");
+		
+		return "redirect:listaEmpresas";
 	}
 
 }
