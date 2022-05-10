@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import model.Banco;
 import model.Empresa;
 
-public class NovaEmpresa {
+public class NovaEmpresa implements Acao {
 
 	public String executa(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -37,7 +37,7 @@ public class NovaEmpresa {
 
 		banco.adicionaEmpresa(empresa);
 
-		return "redirect:listaEmpresas";
+		return "redirect:listaEmpresa";
 	}
 
 }

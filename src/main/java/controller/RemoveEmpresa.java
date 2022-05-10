@@ -8,14 +8,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import model.Banco;
 
-public class RemoveEmpresa {
+public class RemoveEmpresa implements Acao {
 
-	public String executa(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-
+	public String executa(HttpServletRequest request, HttpServletResponse response)
+			throws IOException, ServletException {
 
 		System.out.println("remover empresa " + request.getParameter("id"));
-		
-		
+
 		Banco banco = new Banco();
 		Integer idEmpresa;
 
@@ -26,8 +25,8 @@ public class RemoveEmpresa {
 		}
 
 		banco.removeEmpresa(idEmpresa);
-		
-		return "redirect:listaEmpresas";
+
+		return "redirect:listaEmpresa";
 	}
 
 }

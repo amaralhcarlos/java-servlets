@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import model.Banco;
 import model.Empresa;
 
-public class MostraEmpresa {
+public class MostraEmpresa implements Acao {
 
 	public String executa(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {

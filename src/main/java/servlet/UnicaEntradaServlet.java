@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,12 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import controller.CadastraEmpresa;
-import controller.EditaEmpresa;
-import controller.ListaEmpresa;
-import controller.MostraEmpresa;
-import controller.NovaEmpresa;
-import controller.RemoveEmpresa;
+import controller.Acao;
 
 @WebServlet("/")
 public class UnicaEntradaServlet extends HttpServlet {
@@ -27,35 +23,17 @@ public class UnicaEntradaServlet extends HttpServlet {
 
 		String redirecionamento = null;
 
-		if (url.equals("/gerenciador/listaEmpresas")) {
-			ListaEmpresa acao = new ListaEmpresa();
-			redirecionamento = acao.executa(request, response);
-		}
+		String[] acoes = url.split("/");
 
-		else if (url.equals("/gerenciador/removeEmpresa")) {
-			RemoveEmpresa acao = new RemoveEmpresa();
-			redirecionamento = acao.executa(request, response);
-		}
+		String acaoSelecionada = "controller." + acoes[2].substring(0, 1).toUpperCase() + acoes[2].substring(1);
 
-		else if (url.equals("/gerenciador/mostraEmpresa")) {
-			MostraEmpresa acao = new MostraEmpresa();
+		try {
+			Class classe = Class.forName(acaoSelecionada);
+			Acao acao = (Acao) classe.getDeclaredConstructor().newInstance();
 			redirecionamento = acao.executa(request, response);
-		}
-
-		else if (url.equals("/gerenciador/novaEmpresa")) {
-			NovaEmpresa acao = new NovaEmpresa();
-			redirecionamento = acao.executa(request, response);
-		}
-
-		else if (url.equals("/gerenciador/editaEmpresa")) {
-			EditaEmpresa acao = new EditaEmpresa();
-			redirecionamento = acao.executa(request, response);
-		}
-
-		else if (url.equals("/gerenciador/cadastraEmpresa")) {
-			CadastraEmpresa acao = new CadastraEmpresa();
-			redirecionamento = acao.executa(request, response);
-
+		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
+				| NoSuchMethodException | SecurityException | ClassNotFoundException e) {
+			e.printStackTrace();
 		}
 
 		String[] tipoEEndereco = redirecionamento.split(":");

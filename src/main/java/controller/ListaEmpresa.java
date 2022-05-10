@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import model.Banco;
 import model.Empresa;
 
-public class ListaEmpresa {
+public class ListaEmpresa implements Acao {
 
 	public String executa(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -19,7 +19,7 @@ public class ListaEmpresa {
 		Banco banco = new Banco();
 		List<Empresa> empresas = banco.getEmpresas();
 		request.setAttribute("empresas", empresas);
-		
+
 		return "forward:/lista-empresa.jsp";
 
 	}
