@@ -16,8 +16,6 @@ public class MostraEmpresa implements Acao {
 	public String executa(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		System.out.println("mostrar empresa " + request.getParameter("id"));
-
 		Banco banco = new Banco();
 		Integer idEmpresa;
 		try {

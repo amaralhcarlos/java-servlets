@@ -16,7 +16,6 @@ public class NovaEmpresa implements Acao {
 
 	public String executa(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println("Cadastrando nova empresa");
 
 		Banco banco = new Banco();
 
