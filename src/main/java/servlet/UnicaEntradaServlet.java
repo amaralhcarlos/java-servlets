@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import controller.CadastraEmpresa;
 import controller.EditaEmpresa;
 import controller.ListaEmpresa;
 import controller.MostraEmpresa;
@@ -51,11 +52,17 @@ public class UnicaEntradaServlet extends HttpServlet {
 			redirecionamento = acao.executa(request, response);
 		}
 
+		else if (url.equals("/gerenciador/cadastraEmpresa")) {
+			CadastraEmpresa acao = new CadastraEmpresa();
+			redirecionamento = acao.executa(request, response);
+
+		}
+
 		String[] tipoEEndereco = redirecionamento.split(":");
 
 		if (tipoEEndereco[0].equals("forward")) {
 
-			RequestDispatcher rd = request.getRequestDispatcher(tipoEEndereco[1]);
+			RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/view/" + tipoEEndereco[1]);
 			rd.forward(request, response);
 
 		} else {

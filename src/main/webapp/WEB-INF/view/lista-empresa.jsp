@@ -4,7 +4,7 @@
 
 <c:set var="totalEmpresas" scope="session" value="${empresas.size() }" />
 
-<c:url value="/form-nova-empresa.jsp" var="linkAdicionar" />
+<c:url value="/cadastraEmpresa" var="linkAdicionar" />
 <c:url value="/removeEmpresa?id=" var="linkExcluir" />
 <c:url value="/mostraEmpresa?id=" var="linkEditar" />
 

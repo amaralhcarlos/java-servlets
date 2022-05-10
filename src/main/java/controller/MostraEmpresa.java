@@ -34,7 +34,7 @@ public class MostraEmpresa {
 
 		request.setAttribute("empresa", empresa);
 
-		return "forward:/mostra-empresa.jsp";
+		return "forward:mostra-empresa.jsp";
 
 	}
 
